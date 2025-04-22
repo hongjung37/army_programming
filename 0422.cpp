@@ -1,16 +1,14 @@
 #include <iostream>
-#include <stack>
 using namespace std;
 int board[20][20];
 int col[20];
 int ldig[30];
 int rdig[30];
 int n;
-stack<pair<int,int>> s;
 int cnt=0;
 bool check(int i,int j);
 void place(int i,int j);
-void dfs();
+void dfs(int i,int j);
 
 
 
@@ -18,9 +16,8 @@ void dfs();
 int main() {
     cin>>n;
     for(int i=0;i<n;i++){
-        s.push(make_pair(0,i));
+        dfs(0,i);
     }
-    dfs();
     cout<<cnt;
 }
 
@@ -44,21 +41,18 @@ void unplace(int i,int j) {
     return;
 }
 
-void dfs() {
-    int i=s.top().first;
-    int j=s.top().second;
+void dfs(int i,int j) {
+    cout<<i<<" "<<j<<endl;
     if(i==n-1) {
         cnt++; 
         return;
     }
-    s.pop();
     place(i,j);
     for(int k=0;k<n;k++) {
         if(check(i+1,k)) {
-            s.push(make_pair(i+1,k));
-            dfs();
+            dfs(i+1,k);
         } 
     }
-    deplace(i,j);
+    unplace(i,j);
     return;
 }
