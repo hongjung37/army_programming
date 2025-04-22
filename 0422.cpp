@@ -42,7 +42,6 @@ void unplace(int i,int j) {
 }
 
 void dfs(int i,int j) {
-    cout<<i<<" "<<j<<endl;
     if(i==n-1) {
         cnt++; 
         return;
